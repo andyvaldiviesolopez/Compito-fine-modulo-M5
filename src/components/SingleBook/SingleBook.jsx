@@ -1,43 +1,29 @@
-import React, { useState } from 'react'
-import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
-import CommentArea from '../CommentArea/CommentArea'
 
-const SingleBook = ({ book }) => {
-
-    const [selected, setSelected] = useState(false)
+const SingleBook = ({ book, setSelected, isSelected }) => {
 
     return (
-        <>
-            <Card
-                onClick={() => setSelected(!selected)}
-                style={{
-                    border: selected ? "3px solid red" : "none",
-                    cursor: "pointer"
-                }}
-            >
-                <Card.Img src={book.img} />
+        <Card
+            onClick={() => setSelected(book.asin)}
+            style={{
+                border: isSelected ? "3px solid red" : "none",
+                cursor: "pointer"
+            }}
+        >
 
-                <Card.Body>
-                    <Card.Title>{book.title}</Card.Title>
+            <Card.Img src={book.img} />
 
-                    <Card.Text>
-                        <p>Category: {book.category}</p>
-                        <p>Price: {book.price}€</p>
-                    </Card.Text>
+            <Card.Body>
+                <Card.Title>{book.title}</Card.Title>
 
-                    <Button variant="primary">
-                        Add to cart
-                    </Button>
-                </Card.Body>
-            </Card>
+                <Card.Text>
+                    <p>Category: {book.category}</p>
+                    <p>Price: {book.price}€</p>
+                </Card.Text>
 
-            {selected && (
-                <div className="mt-3">
-                    <CommentArea asin={book.asin} />
-                </div>
-            )}
-        </>
+            </Card.Body>
+
+        </Card>
     )
 }
 
