@@ -1,25 +1,32 @@
 import Card from 'react-bootstrap/Card'
+import Button from 'react-bootstrap/Button'
+import { useNavigate } from "react-router-dom"
 
-const SingleBook = ({ book, setSelected, isSelected }) => {
+const SingleBook = ({ book }) => {
+
+    const navigate = useNavigate()
 
     return (
-        <Card
-            onClick={() => setSelected(book.asin)}
-            style={{
-                border: isSelected ? "3px solid red" : "none",
-                cursor: "pointer"
-            }}
-        >
+        <Card>
 
             <Card.Img src={book.img} />
 
             <Card.Body>
+
                 <Card.Title>{book.title}</Card.Title>
 
                 <Card.Text>
-                    <p>Category: {book.category}</p>
-                    <p>Price: {book.price}€</p>
+                    Category: {book.category}
+                    <br />
+                    Price: {book.price}€
                 </Card.Text>
+
+                <Button
+                    variant="primary"
+                    onClick={() => navigate(`/books/${book.asin}`)}
+                >
+                    Dettagli
+                </Button>
 
             </Card.Body>
 

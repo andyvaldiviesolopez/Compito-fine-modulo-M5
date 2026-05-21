@@ -2,7 +2,7 @@ import HorrorBooks from "../../books/horror.json"
 import SingleBook from "../SingleBook/SingleBook.jsx"
 import Alert from 'react-bootstrap/Alert'
 
-const AllTheBooks = ({ search, setSelected, selected }) => {
+const AllTheBooks = ({ search }) => {
 
     const filteredBooks = HorrorBooks.filter((book) =>
         book.title.toLowerCase().includes(search.toLowerCase())
@@ -24,11 +24,7 @@ const AllTheBooks = ({ search, setSelected, selected }) => {
                         key={book.asin}
                         className="col-12 col-sm-6 col-md-4 col-lg-3"
                     >
-                        <SingleBook
-                            book={book}
-                            setSelected={setSelected}
-                            isSelected={selected === book.asin}
-                        />
+                        <SingleBook book={book} />
                     </div>
                 ))}
 
