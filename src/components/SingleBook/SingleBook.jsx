@@ -2,14 +2,26 @@ import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import { useNavigate } from "react-router-dom"
 
-const SingleBook = ({ book }) => {
+const SingleBook = ({
+    book,
+    selectedBook,
+    setSelectedBook
+}) => {
 
     const navigate = useNavigate()
-
+    const isSelected = String(selectedBook) === String(book.asin)
+    console.log('selected:', selectedBook, 'book:', book.asin)
     return (
-        <Card>
+        <Card
+            data-testid="book-card"
+            onClick={() => setSelectedBook(book.asin)}
+            className={isSelected ? 'selected-book' : ''}
+        >
 
-            <Card.Img src={book.img} />
+            <Card.Img
+                src={book.img}
+                alt={book.title}
+            />
 
             <Card.Body>
 
